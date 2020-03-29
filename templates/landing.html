@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/css/la-hacks-covid.css">
+    <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+
+    </head>
+    <style>
+    div.heady
+      {
+        font-family: 'Alata', sans-serif;
+
+      }
+    </style>
+    <title>
+      [placeholder title]
+    </title>
+  </head>
   <body>
-    <textarea id = "inputPhoneNumber" style = "width:80%;height:100px;">
-    </textarea>
-    <br>
+    <div class="center">
+      <img style="content: url('https://1.bp.blogspot.com/-q0vC8T9XRSg/XiOwuwtXJLI/AAAAAAABXHk/clxgC9d2E8YrWluWTw0NFYP832mEMdN-ACNcBGAsYHQ/s1600/virus_corona.png');">
+    </div>
+    <!-- <div>
+      <textarea id = "inputPhoneNumber" style = "width:80%;height:100px;"> Please enter your phone number here. </textarea>
+    </div>
 
-    <input type="button" value="Submit" onclick="sendText()">
+    <input type="button" value="Submit" onclick="sendText()" class="center">
+  -->
 
+    <div id="inputForm" class="center">
+      <form action="/action_page.php">
+        <label for="name">Please enter your name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="phoneNum">Please enter your phone number:</label>
+        <input type="text" id="inputPhoneNumber" name="phoneNum"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
 
   </body>
   <script>

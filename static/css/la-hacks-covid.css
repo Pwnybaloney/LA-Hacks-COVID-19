@@ -1,0 +1,21 @@
+ 
+ 
+ body
+      {
+        background-image: url("https://2.bp.blogspot.com/-32s96bEJ2vY/VpjBoBNTQdI/AAAAAAAA244/QrWyBSxabqM/s1600/bg_hospital.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Open Sans', sans-serif;
+
+      }
+.center
+      {
+        text-align: center;
+      }
+#inputForm{
+  background-color: white;
+  width: 50%;
+  padding: 100px 10px 100px 10px;
+  margin:auto;
+  font-family: 'Open Sans', sans-serif;
+}
