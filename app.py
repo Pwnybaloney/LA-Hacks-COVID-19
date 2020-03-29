@@ -18,24 +18,9 @@ def home():
 @app.route("/textSend", methods=['GET'])
 def sendText():
 
-
-    toPhoneNumber = request.args.get("phoneNumber") #get the phone number obtained from front end
-
-    account_sid = os.environ['TWILIO_ACCOUNT_SID'] #get account_sid for twilio
-    auth_token = os.environ['TWILIO_AUTH_TOKEN'] #get auth token for twilio
-    client = Client(account_sid, auth_token)
-
-
-    message = client.messages \
-        .create(
-             body="the britsh are coming!",
-             messaging_service_sid='MG293888266321446c593037379a6d6a6a',
-             to= toPhoneNumber
-         )
-    ##############################################################
-
-    areaCode = toPhoneNumber[2:5] #parses the area code of the phone number
     areaState = 'AB' #set an initial state
+    toPhoneNumber = request.args.get("phoneNumber") #get the phone number obtained from front end
+    areaCode = toPhoneNumber[2:5] #parses the area code of the phone number
 
     stateAbrToStateFull = { ##for abbreviations to full name conversions
             'AK': 'Alaska',
@@ -144,8 +129,26 @@ def sendText():
     for item in parsed_json:
         for j in item.items():
             if (j[1] == areaState):
-                returnString = areaState + "currently has " + str(parsed_json[0]['cases']) + " cases."
-    return returnString
+                returnString = "the state of " + areaState + " currently has " + str(parsed_json[0]['cases']) + " cases."
+
+
+    account_sid = os.environ['TWILIO_ACCOUNT_SID'] #get account_sid for twilio
+    auth_token = os.environ['TWILIO_AUTH_TOKEN'] #get auth token for twilio
+    client = Client(account_sid, auth_token)
+
+
+    message = client.messages \
+        .create(
+             body=returnString,
+             messaging_service_sid='MG293888266321446c593037379a6d6a6a',
+             to= toPhoneNumber
+         )
+    return message.sid
+    ##############################################################
+
+
+
+
 
 
 if __name__ == '__main__':
