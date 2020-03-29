@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <form action="/action_page.php">
-    <label for="fname">Phone Number:</label><br>
-    <input type="text" id="fname" name="fname" value="John"><br>
-    <input type="submit" value="Submit">
-  </form>
-  </body>
+    <textarea id = "inputPhoneNumber" style = "width:80%;height:100px;">
+    </textarea>
+    <br>
 
+    <input type="button" value="Submit" onclick="sendText()">
+
+
+  </body>
+  <script>
+
+    document.getElementById("inputPhoneNumber").value = '+1'
+
+    function sendText()
+    {
+      var toPhoneNumber = document.getElementById("inputPhoneNumber").value;
+      httpGet("/textSend?phoneNumber="+toPhoneNumber);
+
+    }
+
+
+
+    function httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+
+  </script>
 </html>
