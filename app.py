@@ -20,7 +20,7 @@ def sendText():
     #sent the message
     message = client.messages \
         .create(
-             body="YEET",
+             body="the britsh are coming!",
              messaging_service_sid='MG293888266321446c593037379a6d6a6a',
              to= toPhoneNumber
          )

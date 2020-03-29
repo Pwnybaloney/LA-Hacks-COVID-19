@@ -10,7 +10,7 @@ client = Client(account_sid, auth_token)
 #sent the message
 message = client.messages \
     .create(
-         body="YEET",
+         body="This is working!",
          messaging_service_sid='MG293888266321446c593037379a6d6a6a',
          to='+15622159912'
      )
