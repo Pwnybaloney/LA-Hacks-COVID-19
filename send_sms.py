@@ -10,9 +10,9 @@ client = Client(account_sid, auth_token)
 #sent the message
 message = client.messages \
     .create(
-         body="This is working!",
+         body="The british are coming! -pwnybaloney",
          messaging_service_sid='MG293888266321446c593037379a6d6a6a',
-         to='+15622159912'
+         to='+15629914051'
      )
 
 print(message.sid)
