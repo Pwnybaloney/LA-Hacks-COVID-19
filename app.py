@@ -13,32 +13,31 @@ app = Flask(__name__)
 string returnString = ""
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('landing.html')
+    return render_template('landing.html') ##render the html page
 
 @app.route("/textSend", methods=['GET'])
 def sendText():
-    #######################################
-    #sends text through twilio
-    #######################################
 
-    toPhoneNumber = request.args.get("phoneNumber")
 
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    toPhoneNumber = request.args.get("phoneNumber") #get the phone number obtained from front end
+
+    account_sid = os.environ['TWILIO_ACCOUNT_SID'] #get account_sid for twilio
+    auth_token = os.environ['TWILIO_AUTH_TOKEN'] #get auth token for twilio
     client = Client(account_sid, auth_token)
 
     #sent the message
-    message = client.messages \
+    message = client.messages \ #send message through twilio
         .create(
              body="the britsh are coming!",
              messaging_service_sid='MG293888266321446c593037379a6d6a6a',
              to= toPhoneNumber
          )
-    ##################################
-    areaCode = toPhoneNumber[2:5]
-    areaState = 'AB'
+    ##############################################################
 
-    stateAbrToStateFull = {
+    areaCode = toPhoneNumber[2:5] #parses the area code of the phone number
+    areaState = 'AB' #set an initial state
+
+    stateAbrToStateFull = { ##for abbreviations to full name conversions
             'AK': 'Alaska',
             'AL': 'Alabama',
             'AR': 'Arkansas',
@@ -100,7 +99,7 @@ def sendText():
 
     #######################################
     #import data for amount of cases by state
-    ######################################
+
     conn = http.client.HTTPSConnection("corona.lmao.ninja")
     payload = ''
     headers = {}
@@ -113,17 +112,17 @@ def sendText():
 
 
 
-    ##############################################################3
+    ##############################################################
     #import data for turning state abbreviations into their full names
-    ################################################################3
+
     with open('codes.json') as json_file:
         stateCodes = json.load(json_file)
 
     #print(json.dumps(stateCodes, indent=4, sort_keys=True))
 
-    #######################################
+    ###########################################################################
     #match area codes to their respective states
-    #########################################
+
     for item in stateCodes:
         for i,j in item.items():
             if areaCode == i:
@@ -132,16 +131,16 @@ def sendText():
 
 
     ##############################################
-    #Turn state abbreviations into full state names
-    ############################################
+    #Turn state abbreviations into full state names using the data
+
 
     for i in stateAbrToStateFull:
         if areaState == i:
             areaState = stateAbrToStateFull[i]
 
-    ########################################
+    #################################################################
     #match the state to the full corona database with the amount of cases
-    ####################################
+
     for item in parsed_json:
         for j in item.items():
             if (j[1] == areaState):
