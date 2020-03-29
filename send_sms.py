@@ -1,16 +1,16 @@
 # Download the helper library from https://www.twilio.com/docs/python/install
 from twilio.rest import Client
 
-
+import os
 # Your Account Sid and Auth Token from twilio.com/console
 # DANGER! This is insecure. See http://twil.io/secure
-account_sid = 'AC3ddd25f3b0751e1402277dbea25ab7b9'
-auth_token = 'c04c20800d88d25f1efc401b3245200b'
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
 client = Client(account_sid, auth_token)
 
 message = client.messages \
     .create(
-         body="wubbalubbadubdub.",
+         body="Join Earth's mightiest heroes. Like Kevin Bacon.",
          messaging_service_sid='MG293888266321446c593037379a6d6a6a',
          to='+15622159912'
      )
