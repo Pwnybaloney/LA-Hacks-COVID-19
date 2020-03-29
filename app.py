@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__)
 
-string returnString = ""
+returnString = ""
 @app.route('/', methods=['GET'])
 def home():
     return render_template('landing.html') ##render the html page
@@ -25,8 +25,8 @@ def sendText():
     auth_token = os.environ['TWILIO_AUTH_TOKEN'] #get auth token for twilio
     client = Client(account_sid, auth_token)
 
-    #sent the message
-    message = client.messages \ #send message through twilio
+
+    message = client.messages \
         .create(
              body="the britsh are coming!",
              messaging_service_sid='MG293888266321446c593037379a6d6a6a',

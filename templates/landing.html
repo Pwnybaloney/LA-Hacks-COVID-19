@@ -30,13 +30,14 @@
       <h1>
         Sign up to be alerted about new COVID-19/coronavirus cases in your area!
       </h1>
-      <form action="/action_page.php">
+
         <label for="name">Please enter your name:</label>
         <input type="text" id="name" name="name"><br><br>
         <label for="phoneNum">Please enter your phone number:</label>
         <input type="text" id="inputPhoneNumber" name="phoneNum"><br><br>
-        <input type="submit" value="Submit">
-      </form>
+        <input type="submit" value="Submit" onclick="sendText()">
+
+      <p id = "result"> </p>
     </div>
 <div class="parent">
     <div class="animate center div1">
@@ -60,8 +61,8 @@
     function sendText()
     {
       var toPhoneNumber = document.getElementById("inputPhoneNumber").value;
-      httpGet("/textSend?phoneNumber="+toPhoneNumber);
-
+      var returnString = httpGet("/textSend?phoneNumber="+toPhoneNumber);
+      document.getElementById('result').innerHtml - returnString;
     }
 
 
