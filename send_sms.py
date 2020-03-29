@@ -12,7 +12,7 @@ message = client.messages \
     .create(
          body="wubbalubbadubdub.",
          messaging_service_sid='MG293888266321446c593037379a6d6a6a',
-         to='+15627326959'
+         to='+15622159912'
      )
 
 print(message.sid)
